@@ -10,7 +10,6 @@ Vue.component("obj-head", {
 			:color="obj.color.toHex()" 
 				
 			>
-			<obj-axes scale=".1 .1 .1" v-if="true" />
 		</a-sphere>
 		
 		<a-sphere 
@@ -257,7 +256,25 @@ Vue.component("obj-world", {
                 vertex-c = "0 3.5 4"
                 material="side:double">
             </a-triangle>
-        </a-entity>
+		</a-entity>
+		
+		<a-sphere
+          id="light"
+          position="3.6 3.3 0"
+          radius=".3"
+          scale="1 1 1"
+          color="##ffbe69"
+          material="emissive:yellow"
+		></a-sphere>
+		
+		<a-sphere
+          id="light"
+          position="-3.6 3.3 0"
+          radius=".3"
+          scale="1 1 1"
+          color="##ffbe69"
+          material="emissive:yellow"
+        ></a-sphere>
 
 		<a-box 
 			v-for="(rock,index) in rocks"
@@ -266,7 +283,7 @@ Vue.component("obj-world", {
 
 			roughness="1"
 
-			:color="rock.color.toHex()"
+			:color="rock.color"
 			:width="rock.size.x" 
 			:depth="rock.size.z" 
 			:height="rock.size.y" 
@@ -320,12 +337,12 @@ Vue.component("obj-world", {
 		}
 
 		let rocks = []
-		let rockCount = 20
+		let rockCount = 22
 		for (var i = 0; i < rockCount; i++) {
 			let h = 1.2 + noise(i*100) // Size from 1 to 3
 			let rock = new LiveObject(undefined, { 
 				size: new THREE.Vector3(h, h, h),
-				color: new Vector(noise(i)*30 + 140, 0, 40 + 20*noise(i*3))
+				color: generateRandomColor() //new Vector(noise(i)*30 + 140, 0, 40 + 20*noise(i*3))
 			})
 			let r = 4 + 1*noise(i*1)
 			// Put them on the other side
@@ -391,18 +408,18 @@ Vue.component("obj-world", {
 		grammar.addModifiers(baseEngModifiers)
 
 		const campfireSongs = ["Lonely Goatherd", "On top of spaghetti", "Princess Pat", "BINGO", "Old Mac Donald", "Going on a Bear Hunt", "The Green Grass Grew All Around", "Home on the Range", "John Jacob Jingleheimer Schmitt", "The Wheels on the Bus", "If I had a Hammer"]
-		this.room.detailText = "Campfire time!"
+		this.room.detailText = "Picnic time!"
 
-		this.room.time.onSecondChange((second) => {
-			// Change the song every minute (60 seconds)
-			let rate = 10 // How many seconds between changes
-			if (second%rate === 0) {
-				let tick = second/rate
-				let index = second % campfireSongs.length
-				let song = campfireSongs[index]
-				this.room.detailText =  song + grammar.flatten("#songStyle#")
-			}
-		})
+		// this.room.time.onSecondChange((second) => {
+		// 	// Change the song every minute (60 seconds)
+		// 	let rate = 10 // How many seconds between changes
+		// 	if (second%rate === 0) {
+		// 		let tick = second/rate
+		// 		let index = second % campfireSongs.length
+		// 		let song = campfireSongs[index]
+		// 		this.room.detailText =  song + grammar.flatten("#songStyle#")
+		// 	}
+		// })
 
 		// let count = 10
 
