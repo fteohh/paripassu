@@ -217,14 +217,16 @@ Vue.component("obj-world", {
 		<a-entity>
             <a-cylinder color="green" height="7" radius=".05" position="4 0 0" ></a-cylinder>
             <a-cylinder color="blue" height="7" radius=".05" position="0 0 -4" ></a-cylinder>
-            <a-cylinder color="crimson" height="9" radius=".05" position="0 0 4" ></a-cylinder>
-            <a-cylinder color="yellow" height="5" radius=".05" position="-4 0 0" ></a-cylinder>
+            <a-cylinder color="crimson" height="7" radius=".05" position="0 0 4" ></a-cylinder>
+            <a-cylinder color="yellow" height="7" radius=".05" position="-4 0 0" ></a-cylinder>
+
+			<!--- <a-cylinder color="black" height="2" radius=".025" position="0 4 0" ></a-cylinder> --->
 
             <a-triangle 
                 color="orange" 
                 roughness="1"
                 vertex-a = "4 3.5 0"
-                vertex-b = "0 4.5 4"
+                vertex-b = "0 5 0"
                 vertex-c = "0 3.5 -4"
                 material="side:double">
             </a-triangle>
@@ -232,9 +234,27 @@ Vue.component("obj-world", {
 			<a-triangle 
                 color="purple" 
                 roughness="1"
-                vertex-a = "-4 2.5 0"
-                vertex-b = "4 3.5 0"
+                vertex-a = "4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="pink" 
+                roughness="1"
+                vertex-a = "-4 3.5 0"
+                vertex-b = "0 5 0"
                 vertex-c = "0 3.5 -4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="aqua" 
+                roughness="1"
+                vertex-a = "-4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 4"
                 material="side:double">
             </a-triangle>
         </a-entity>
