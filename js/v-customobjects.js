@@ -1,19 +1,17 @@
-const fakeBodyCount = 1
-const fakeBodySteps = 1000
+const fakeBodyCount = 10
+const fakeBodySteps = 500
 
 const trackedKeys = ["size", "color", "fireStrength", "rotation", "position", "paritype", "displayName", "label", "labelWidth"]
-
 // Decorate the head of our guests
 Vue.component("obj-head", {
 	template: `<a-entity>
-
 		<a-sphere 
 			shadow
 			:radius="headSize"
 			:color="obj.color.toHex()" 
 				
 			>
-			<obj-axes scale=".1 .1 .1" v-if="false" />
+			<obj-axes scale=".1 .1 .1" v-if="true" />
 		</a-sphere>
 		
 		<a-sphere 
@@ -24,13 +22,13 @@ Vue.component("obj-head", {
 		:radius="headSize">
 		</a-sphere>
 
-		<a-cone v-for="(spike,index) in spikes"
-			:key="index"
-			:height="spike.size"
-			:radius-bottom="headSize*.2"
+		<a-box v-for="(spike,index) in spikes"
+			:depth="headSize*2"
+			:height="headSize*.2"
+			:width="headSize*2"
 			:position="spike.position.toAFrame(0, .2, 0)"
 			:rotation="spike.rotation.toAFrame()"
-			:color="obj.color.toHex(.5*Math.sin(index))" 
+			:color="obj.color.toHex(Math.sin(index))" 
 				
 			>
 		<a-sphere 
@@ -82,32 +80,32 @@ Vue.component("obj-head", {
 		},
 	},
 
-	// data() {
-	// 	let spikeCount = 5
-	// 	let spikes = []
+	data() {
+		let spikeCount = 5
+		let spikes = []
 
-	// 	for (var i = 0; i < spikeCount; i++) {
-	// 		let h = .1
-	// 		let spike = new LiveObject(undefined, {
-	// 			size: new THREE.Vector3(h*.2, h, h*.2),
-	// 			color: new Vector(noise(i)*30 + 140, 0, 40 + 20*noise(i*3))
-	// 		})
-	// 		let r = .2
-	// 		// Put them on the other side
-	// 		let theta = 2*noise(i*10) + 3
-	// 		spike.position.setToCylindrical(r, theta, h*.3)
-	// 		// Look randomly
-	// 		spike.lookAt(0, 3, 0)
-	// 		spikes.push(spike)
-	// 	}
+		for (var i = 0; i < spikeCount; i++) {
+			let h = .1
+			let spike = new LiveObject(undefined, {
+				size: new THREE.Vector3(h*.2, h, h*.2),
+				color: new Vector(noise(i)*30 + 140, 0, 40 + 20*noise(i*3))
+			})
+			let r = .2
+			// Put them on the other side
+			let theta = 2*noise(i*10) + 3
+			spike.position.setToCylindrical(r, theta, h*.3)
+			// Look randomly
+			spike.lookAt(0, 3, 0)
+			spikes.push(spike)
+		}
 
-	// 	return {
-	// 		spikes: spikes
-	// 	}
-	// },
+		return {
+			spikes: spikes
+		}
+	},
 
 	mounted() {
-		// console.log(this.headSize)
+		console.log(this.headSize)
 	},
 	props: ["obj"]
 })
@@ -385,7 +383,6 @@ Vue.component("obj-world", {
 		return {
 			trees: trees,
 			rocks: rocks
-			// boxes: []
 		}
 	},
 
@@ -401,11 +398,13 @@ Vue.component("obj-world", {
 				// Change the fire's color
 				let hue = (noise(t*.02)+1)*180
 				Vue.set(this.color.v, 0, hue)
+
+				// console.log(this.color[0] )
 			}
 		})
 
 
-		fire.position.set(0, 0, 0)
+		fire.position.set(1, 0, -2)
 		fire.fireStrength = 1
 
 		// let fire2 = new LiveObject(this.room, {
@@ -456,17 +455,16 @@ Vue.component("obj-world", {
 		// 	let r = 5
 		// 	let theta = Math.PI*2*i/count
 
-		// 	this.boxes.push({
-		// 		pos: Vector.polar(r, theta, "y"),
-		// 		rot: new Vector(0, -theta*180/Math.PI, 0),
-		// 		size: Math.random()*1
-		// 	})
-
-
-		// }
-		// console.log(this.boxes)
-
-
+		this.room.time.onSecondChange((second) => {
+			// Change the song every minute (60 seconds)
+			let rate = 10 // How many seconds between changes
+			if (second%rate === 0) {
+				let tick = second/rate
+				let index = second % campfireSongs.length
+				let song = campfireSongs[index]
+				this.room.detailText =  song + grammar.flatten("#songStyle#")
+			}
+		})
 	},
 
 	props: ["room"]

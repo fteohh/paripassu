@@ -10,8 +10,8 @@
 
 class Room {
 	constructor() {
-		this.tempDisplayName = params.name || words.getUserName()
-		this.setID(params.room || "test")
+		
+		this.setID("test")
 		
 		// Update loop runs regardless of roomID
 		// Initialize an update loop
@@ -29,13 +29,9 @@ class Room {
 			onSecondChangeHandlers: [],
 		}
 		
-		this.authID = undefined
-
 		setInterval(() => {
 			this.sim()
 		}, 50)
-
-		this.createUserHead()
 
 		this.fakeData()
 	}
@@ -87,114 +83,36 @@ class Room {
 		}
 	}
 
-	createUserHead() {
-		console.log("Create primary user's head")
-		this.userHead = new LiveObject(this, {
-			paritype: "head",
-			uid: LOCAL_UID,
-			label: this.tempDisplayName
-		})
-		// Set us to a random position to prevent collisions
-		
-		this.userHead.isTracked = true
-	}
 
 	//=================================
 	// Events
 
-	onAuth(authID, database) {
-		this.authID = authID
-		// We have authenticated! 
-		// Add ourselves to the room on firebase
-		console.log(`Authenticated as ${authID}`)
+	onAuth(authID) {
+		this.userHead = new LiveObject(this, {
+			type: "head",
+			authID: authID,
+			displayName: words.getUserName()
+		})
 
-		try {
-			this.eventRef = firebase.database().ref('rooms/' + this.roomID + "/events");
-			this.objectRef = firebase.database().ref('rooms/' + this.roomID + "/objects");
+	}
 
-			// Post all the objects immediately, and set their references
-			console.log("Post all existing objects", this.objects)
-			for (const [uid, obj] of Object.entries(this.objects)) {
-				if (obj.isTracked) {
-					console.log("Posting existing object", obj.toString())
-				
-					obj.setRef()
-					obj.post()
-				}
-				
+	post(event) {
+
+	}
+
+	handleUpdate(data) {
+		
+		// Which are we missing?
+		for (const [uid, objData] of Object.entries(data)) {
+			if (this.objects[uid] === undefined) {
+				console.log("Create new local object from server data", uid.slice(-4), objData.paritype)
+				let localObj = new LiveObject(this, objData)
 			}
 
-			this.objectRef.on("child_added", (snapshot) => {
-				let data = snapshot.val()
-				if (data) {
-
-					// console.log("new child!")
-					// console.log(snapshot.key, data)
-					let key = snapshot.key
-					console.log("NEW LiveObject ADDED", key)
-				
-					if (this.objects[key]) {
-						console.log("\tAdd to existing LiveObject", key, data)
-						this.objects[key].handleUpdate(data)
-					}
-					else {
-						console.log("\tCreate new " + data.paritype + " from firebase data", data)
-						data.uid = key
-						let obj = new LiveObject(this, data)
-					}
-				}
-			})
+			// Copy over the data
+			this.objects[uid].handleUpdate(objData)
 		}
-		catch(err) {
-			console.warn("No FB ref yet!")
-		}
-
 	}
-
-	get displayName() {
-		return this.userHead.displayName
-	}
-
-	post(type, data) {
-		// console.log("--posting disabled--")
-		// Temp local id, use Firebase ID when connected
-		// let uid = "L_" + uuidv4().slice(-3)
-			
-		// let ev = {
-		// 	type: type,
-		// 	from: this.authID,
-		// 	date: Date.now(),
-		// 	data: data
-		// }
-
-		// // Do we have an eventRef? Use that
-		// if (this.eventRef) {
-
-		// 	var newPostRef = this.eventRef.push();
-		// 	let uid = newPostRef.key
-		// 	newPostRef.set(ev)
-		// } else {
-		// 	// No eventRef? we're playing locally, no server
-		// 	this.events[uid] = ev
-		// }
-	}
-
-	// handleUpdate(data) {
-		
-	// 	// Which are we missing?
-	// 	for (const [uid, objData] of Object.entries(data)) {
-	// 		if (this.objects[uid] === undefined) {
-	// 			console.log("Create new local object from server data", uid.slice(-4), objData.paritype)
-	// 			let localObj = new LiveObject(this, objData)
-	// 		}
-
-	// 		// Copy over the data
-	// 		else {
-	// 			// console.warn("Send update to uid")
-	// 			this.objects[uid].handleUpdate(objData)
-	// 		}
-	// 	}
-	// }
 
 
 
@@ -228,19 +146,18 @@ class Room {
 			if (count < fakeBodySteps) {
 
 				if (fakeBodies.length < fakeBodyCount && Math.random() < .1) {
-					let index = fakeBodies.length
+					
+					console.log("New fake user")
 					// Create a fake head object
-					let head = new LiveObject(this, {
+					let head = new LiveObject(undefined, {
 						paritype: "head",
-						uid: "FAKE_" + index,
-						authID: "FAKE_" + index,
+						authID: "FAKE_" + uuidv4(),
 						displayName: words.getUserName(),
-						height: 1.4 + Math.random()*.2,
-						label: "fake" + index,
+						height: 1.6 + Math.random()*.2,
+						label: "fake",
 						color: new Vector(Math.random()*360, 100, 50),
 						setForce({t, dt, frameCount}) {
 							let idNumber = this.uid.hashCode()
-
 							this.f.set(0,0,0)
 
 							let move = Math.max(0,2*noise(t*.12 + idNumber - 1))
@@ -250,23 +167,10 @@ class Room {
 							if (this.position.length() > 4) {
 								this.f.addScaledVector(this.position, -.02)
 							}
-							
-							// if (this.fakeIndex == 0)
-							// 	console.log(this.f.toFixed(2))
-
-							this.v.y = this.height
-							this.position.y = this.height
-							this.lookAlong(this.v)
-							this.rotateX(Math.PI/2)
-							this.rotateZ(.5*noise(t*.2 + idNumber))
-							// this.rotateY(Math.PI)
-							// this.rotation.set(noise(idNumber + t*.1), Math.atan2(-this.v.x, -this.v.z), 0)
+							this.position.z = this.height
 						}
 					})
-					console.log("Create fakebody", head.uid)
-					head.fakeIndex = index
-					head.position.setToCylindrical(3, 4 + 10*Math.random(), 1)
-					
+					head.position.setToCylindrical(3, 4 + Math.random(), 1)
 					fakeBodies.push(head)
 				
 
@@ -276,17 +180,29 @@ class Room {
 				// Simulate all the current fakebodies
 				fakeBodies.forEach((fb,index) => {
 					fb.updateObject(this.time)
+
 				})
 
+				let update = {}
 				fakeBodies.forEach(fb => {
-					fb.handleUpdate(fb.getUpdateData())
+					update[fb.uid] = fb.toPost()
 				})
 
+				this.handleUpdate(update)
 			}
 		}, 20)
 
-		// this.onAuth("USER")
+		this.onAuth("FAKE_USER_AUTHID")
 	}
 
+	//=================================
+
 	
+	connectToFirebase(realtimeDatabaseRef) {
+
+	}
+
+	connectToPeer(id) {
+		// Connect to this peer
+	}
 }
