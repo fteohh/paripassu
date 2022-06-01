@@ -1,15 +1,19 @@
-const fakeBodyCount = 10
-const fakeBodySteps = 500
+const fakeBodyCount = 1
+const fakeBodySteps = 1000
+
+const trackedKeys = ["size", "color", "fireStrength", "rotation", "position", "paritype", "displayName", "label", "labelWidth"]
 
 // Decorate the head of our guests
 Vue.component("obj-head", {
 	template: `<a-entity>
+
 		<a-sphere 
 			shadow
 			:radius="headSize"
 			:color="obj.color.toHex()" 
 				
 			>
+			<obj-axes scale=".1 .1 .1" v-if="false" />
 		</a-sphere>
 		
 		<a-sphere 
@@ -20,6 +24,15 @@ Vue.component("obj-head", {
 		:radius="headSize">
 		</a-sphere>
 
+		<a-cone v-for="(spike,index) in spikes"
+			:key="index"
+			:height="spike.size"
+			:radius-bottom="headSize*.2"
+			:position="spike.position.toAFrame(0, .2, 0)"
+			:rotation="spike.rotation.toAFrame()"
+			:color="obj.color.toHex(.5*Math.sin(index))" 
+				
+			>
 		<a-sphere 
 		:color="obj.color.toHex()"  
 		position="0 0 -.2" 
@@ -44,6 +57,20 @@ Vue.component("obj-head", {
 		:radius="headSize*.75">
 		</a-cylinder>
 		
+		</a-cone>
+
+		<!-- NOSE -->
+		<a-cone
+		
+			:height="headSize*.6"
+			:radius-bottom="headSize*.4"
+			position="0 0 -.18"
+			
+			:color="obj.color.toHex(.3)" 
+			
+		>
+	
+		</a-cone>
 	</a-entity>
 	`,
 	computed: {
@@ -61,7 +88,7 @@ Vue.component("obj-head", {
 
 	// 	for (var i = 0; i < spikeCount; i++) {
 	// 		let h = .1
-	// 		let spike = new LiveObject(undefined, { 
+	// 		let spike = new LiveObject(undefined, {
 	// 			size: new THREE.Vector3(h*.2, h, h*.2),
 	// 			color: new Vector(noise(i)*30 + 140, 0, 40 + 20*noise(i*3))
 	// 		})
@@ -80,7 +107,7 @@ Vue.component("obj-head", {
 	// },
 
 	mounted() {
-		console.log(this.headSize)
+		// console.log(this.headSize)
 	},
 	props: ["obj"]
 })
@@ -89,6 +116,7 @@ Vue.component("obj-head", {
 Vue.component("obj-fire", {
 	template: `
 	<a-entity>
+		<obj-axes scale="5 5 5" v-if="false" />
 		<a-sphere 
 			color="grey"
 			radius=2 
@@ -887,7 +915,7 @@ Vue.component("obj-world", {
 			let tree = new LiveObject(undefined, { 
 				size: new THREE.Vector3(.3, h, .3),
 				color: generateRandomColor()//new Vector(noise(i*50)*30 + 40, 200, 160 + 10*noise(i*10))
-				
+
 			})
 			let r = 20 + 10*noise(i*40)
 			let theta = 2*noise(i*10)
@@ -928,15 +956,16 @@ Vue.component("obj-world", {
 		let fire = new LiveObject(this.room, {
 			paritype: "fire",  // Tells it which type to use
 			uid: "fire0",
+			isTracked: true,
 			onUpdate({t, dt, frameCount}) {
+				// Change the fire's color
 				let hue = (noise(t*.02)+1)*180
 				Vue.set(this.color.v, 0, hue)
-				
-				// console.log(this.color[0] )
 			}
 		})
 
-		fire.position.set(1, 0, -2)
+
+		fire.position.set(0, 0, 0)
 		fire.fireStrength = 1
 
 		// let fire2 = new LiveObject(this.room, {
