@@ -255,26 +255,584 @@ Vue.component("obj-world", {
                 vertex-b = "0 5 0"
                 vertex-c = "0 3.5 4"
                 material="side:double">
+			</a-triangle>
+			
+			<a-sphere
+			id="light"
+			position="3.6 3.3 0"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-3.6 3.3 0"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="0 3.3 -3.6"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="0 3.3 3.6"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+
+			<a-sphere
+			id="light"
+			position="2.5 3.3 1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="1 3.3 2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-2.5 3.3 1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-1 3.3 2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="2.5 3.3 -1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="1 3.3 -2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-2.5 3.3 -1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-1 3.3 -2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+
+		</a-entity>
+
+
+		<a-entity rotation="0 45 0" position="10 0 -8">
+            <a-cylinder color="green" height="7" radius=".05" position="4 0 0" ></a-cylinder>
+            <a-cylinder color="blue" height="7" radius=".05" position="0 0 -4" ></a-cylinder>
+            <a-cylinder color="crimson" height="7" radius=".05" position="0 0 4" ></a-cylinder>
+            <a-cylinder color="yellow" height="7" radius=".05" position="-4 0 0" ></a-cylinder>
+
+			<!--- <a-cylinder color="black" height="2" radius=".025" position="0 4 0" ></a-cylinder> --->
+
+            <a-triangle 
+                color="orange" 
+                roughness="1"
+                vertex-a = "4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 -4"
+                material="side:double">
             </a-triangle>
+
+			<a-triangle 
+                color="purple" 
+                roughness="1"
+                vertex-a = "4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="pink" 
+                roughness="1"
+                vertex-a = "-4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 -4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="aqua" 
+                roughness="1"
+                vertex-a = "-4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 4"
+                material="side:double">
+			</a-triangle>
+			
+			<a-sphere
+			id="light"
+			position="3.6 3.3 0"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-3.6 3.3 0"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="0 3.3 -3.6"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="0 3.3 3.6"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+
+			<a-sphere
+			id="light"
+			position="2.5 3.3 1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="1 3.3 2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-2.5 3.3 1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-1 3.3 2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="2.5 3.3 -1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="1 3.3 -2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-2.5 3.3 -1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-1 3.3 -2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+
+			<plate>
 		</a-entity>
 		
-		<a-sphere
-          id="light"
-          position="3.6 3.3 0"
-          radius=".3"
-          scale="1 1 1"
-          color="##ffbe69"
-          material="emissive:yellow"
-		></a-sphere>
+		<a-entity rotation="0 45 0" position="-7 0 -7">
+            <a-cylinder color="green" height="7" radius=".05" position="4 0 0" ></a-cylinder>
+            <a-cylinder color="blue" height="7" radius=".05" position="0 0 -4" ></a-cylinder>
+            <a-cylinder color="crimson" height="7" radius=".05" position="0 0 4" ></a-cylinder>
+            <a-cylinder color="yellow" height="7" radius=".05" position="-4 0 0" ></a-cylinder>
+
+			<!--- <a-cylinder color="black" height="2" radius=".025" position="0 4 0" ></a-cylinder> --->
+
+            <a-triangle 
+                color="orange" 
+                roughness="1"
+                vertex-a = "4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 -4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="purple" 
+                roughness="1"
+                vertex-a = "4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="pink" 
+                roughness="1"
+                vertex-a = "-4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 -4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="aqua" 
+                roughness="1"
+                vertex-a = "-4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 4"
+                material="side:double">
+			</a-triangle>
+			
+			<a-sphere
+			id="light"
+			position="3.6 3.3 0"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-3.6 3.3 0"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="0 3.3 -3.6"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="0 3.3 3.6"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+
+			<a-sphere
+			id="light"
+			position="2.5 3.3 1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="1 3.3 2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-2.5 3.3 1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-1 3.3 2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="2.5 3.3 -1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="1 3.3 -2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-2.5 3.3 -1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-1 3.3 -2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+
+			<plate>
+		</a-entity>
 		
-		<a-sphere
-          id="light"
-          position="-3.6 3.3 0"
-          radius=".3"
-          scale="1 1 1"
-          color="##ffbe69"
-          material="emissive:yellow"
-        ></a-sphere>
+		<a-entity rotation="0 45 0" position="5 0 10">
+            <a-cylinder color="green" height="7" radius=".05" position="4 0 0" ></a-cylinder>
+            <a-cylinder color="blue" height="7" radius=".05" position="0 0 -4" ></a-cylinder>
+            <a-cylinder color="crimson" height="7" radius=".05" position="0 0 4" ></a-cylinder>
+            <a-cylinder color="yellow" height="7" radius=".05" position="-4 0 0" ></a-cylinder>
+
+			<!--- <a-cylinder color="black" height="2" radius=".025" position="0 4 0" ></a-cylinder> --->
+
+            <a-triangle 
+                color="orange" 
+                roughness="1"
+                vertex-a = "4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 -4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="purple" 
+                roughness="1"
+                vertex-a = "4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="pink" 
+                roughness="1"
+                vertex-a = "-4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 -4"
+                material="side:double">
+            </a-triangle>
+
+			<a-triangle 
+                color="aqua" 
+                roughness="1"
+                vertex-a = "-4 3.5 0"
+                vertex-b = "0 5 0"
+                vertex-c = "0 3.5 4"
+                material="side:double">
+			</a-triangle>
+			
+			<a-sphere
+			id="light"
+			position="3.6 3.3 0"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-3.6 3.3 0"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="0 3.3 -3.6"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="0 3.3 3.6"
+			radius=".3"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+
+			<a-sphere
+			id="light"
+			position="2.5 3.3 1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="1 3.3 2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-2.5 3.3 1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-1 3.3 2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="2.5 3.3 -1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="1 3.3 -2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-2.5 3.3 -1.5"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+			
+			<a-sphere
+			id="light"
+			position="-1 3.3 -2.8"
+			radius=".2"
+			scale="1 1 1"
+			color="##ffbe69"
+			material="emissive:yellow"
+			></a-sphere>
+
+			<plate>
+		</a-entity>
+		
 
 		<a-box 
 			v-for="(rock,index) in rocks"
@@ -291,6 +849,8 @@ Vue.component("obj-world", {
 			:rotation="rock.rotation.toAFrame()"
 			:position="rock.position.toAFrame()">
 		</a-box>
+
+		
 
 
 		<plate>
@@ -408,7 +968,7 @@ Vue.component("obj-world", {
 		grammar.addModifiers(baseEngModifiers)
 
 		const campfireSongs = ["Lonely Goatherd", "On top of spaghetti", "Princess Pat", "BINGO", "Old Mac Donald", "Going on a Bear Hunt", "The Green Grass Grew All Around", "Home on the Range", "John Jacob Jingleheimer Schmitt", "The Wheels on the Bus", "If I had a Hammer"]
-		this.room.detailText = "Picnic time!"
+		this.room.detailText = "Tailgate time!"
 
 		// this.room.time.onSecondChange((second) => {
 		// 	// Change the song every minute (60 seconds)
