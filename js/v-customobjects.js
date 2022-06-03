@@ -86,7 +86,10 @@ Vue.component("obj-head", {
 })
 
 
+
 Vue.component("obj-fire", {
+
+	
 	template: `
 	<a-entity>
 		<a-sphere 
@@ -102,14 +105,112 @@ Vue.component("obj-fire", {
 			>
 		</a-sphere>
 		<a-cone
-			position="0 .2 0"
+			position=".3 .2 .3"
+			@click="click"
+			:animation="heightAnimation"
+			:color="obj.color.toHex()"
+			radius-bottom=".1"
+
+			:scale="(obj.fireStrength*.2 + 1) + ' ' + .1*obj.fireStrength + ' ' + (obj.fireStrength*.2 + 1)"
+			:material="fireMaterial">
+
+		</a-cone>
+
+		<a-cone
+			position="-.3 .2 -.3"
 			@click="click"
 			:animation="heightAnimation"
 			:color="obj.color.toHex()"
 			height=.2
-			radius-bottom=".4"
+			radius-bottom=".1"
 
 			:scale="(obj.fireStrength*.2 + 1) + ' ' + .1*obj.fireStrength + ' ' + (obj.fireStrength*.2 + 1)"
+			:material="fireMaterial">
+
+		</a-cone>
+
+		<a-cone
+			position="-.3 .2 .3"
+			@click="click"
+			:animation="heightAnimation"
+			:color="obj.color.toHex()"
+			height=.2
+			radius-bottom=".1"
+
+			:scale="(obj.fireStrength*.2 + 1) + ' ' + .1*obj.fireStrength + ' ' + (obj.fireStrength*.2 + 1)"
+			:material="fireMaterial">
+
+		</a-cone>
+
+		<a-cone
+			position=".3 .2 -.3"
+			@click="click"
+			:animation="heightAnimation"
+			:color="obj.color.toHex()"
+			height=".2"
+			radius-bottom=".1"
+
+			:scale="(obj.fireStrength*.2 + 1) + ' ' + .1*obj.fireStrength + ' ' + (obj.fireStrength*.2 + 1)"
+			:material="fireMaterial">
+
+		</a-cone>
+
+		<a-cone
+			position="0 .2 .2"
+			@click="click"
+			:animation="heightAnimation"
+			:color="obj.color.toHex()"
+			radius-bottom=".1"
+
+			:scale="(obj.fireStrength*.2 + 1) + ' ' + .2*obj.fireStrength + ' ' + (obj.fireStrength*.2 + 1)"
+			:material="fireMaterial">
+
+		</a-cone>
+
+		<a-cone
+			position=".2 .2 0"
+			@click="click"
+			:animation="heightAnimation"
+			:color="obj.color.toHex()"
+			radius-bottom=".1"
+
+			:scale="(obj.fireStrength*.2 + 1) + ' ' + .2*obj.fireStrength + ' ' + (obj.fireStrength*.2 + 1)"
+			:material="fireMaterial">
+
+		</a-cone>
+
+		<a-cone
+			position="-.2 .2 0"
+			@click="click"
+			:animation="heightAnimation"
+			:color="obj.color.toHex()"
+			radius-bottom=".1"
+
+			:scale="(obj.fireStrength*.2 + 1) + ' ' + .2*obj.fireStrength + ' ' + (obj.fireStrength*.2 + 1)"
+			:material="fireMaterial">
+
+		</a-cone>
+
+		<a-cone
+			position="0 .2 -.2"
+			@click="click"
+			:animation="heightAnimation"
+			:color="obj.color.toHex()"
+			radius-bottom=".1"
+
+			:scale="(obj.fireStrength*.2 + 1) + ' ' + .2*obj.fireStrength + ' ' + (obj.fireStrength*.2 + 1)"
+			:material="fireMaterial">
+
+		</a-cone>
+
+		<a-cone
+			position="0 .2 0"
+			@click="click"
+			:animation="heightAnimation"
+			:color="obj.color.toHex()"
+			radius-bottom=".1"
+
+			:scale="(obj.fireStrength*1 + 1) + ' ' + .5*obj.fireStrength + ' ' + (obj.fireStrength*1 + 1)"
 			:material="fireMaterial">
 
 		</a-cone>
@@ -141,7 +242,7 @@ Vue.component("obj-fire", {
 			return `property: intensity; from:.3; to:.6; dir:alternate;dur: ${this.animationSpeed}; easing:easeInOutQuad;loop:true`
 		},
 		heightAnimation() {
-			return `property: height; from:${this.obj.fireStrength};to:${this.obj.fireStrength*2}; dir:alternate;dur: 500; easing:easeInOutQuad;loop:true`
+			return `property: height; from:${this.obj.fireStrength};to:${this.obj.fireStrength*1.2}; dir:alternate;dur: 500; easing:easeInOutQuad;loop:true`
 		}
 	},
 
